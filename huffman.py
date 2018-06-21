@@ -26,13 +26,13 @@ class ComplexSign:
 buffor = []
 
 
-plik = open('huff.txt')
+plik = open('huff-wiedzmin.txt')
 try:
 	tekst = plik.read()
 finally:
 	plik.close()
 
-print("Wczytuje z pliku: ",tekst)
+# print("Wczytuje z pliku: ",tekst)
 liczba_znakow = len(tekst)
 
 Dict = {}
@@ -48,20 +48,18 @@ print("Liczba znakow ogolem: ", liczba_znakow)
 print("Liczba wystapien: ", Dict)
 print("Liczba znakow: ", len(Dict))
 
-Dict2 = {}
 for x in Dict:
-    Dict2[x] = Dict[x] / liczba_znakow
+    Dict[x] = Dict[x] / liczba_znakow
 
 
 feasibleArr = []
 
-for x in Dict2:
-    feasibleArr.append(Sign({'label': x, 'probability': Dict2[x]}))
+for x in Dict:
+    feasibleArr.append(Sign({'label': x, 'probability': Dict[x]}))
 
 
 for sign in feasibleArr:
     buffor.append(ComplexSign(sign))
-
 
 def huffman(buffor):
     for i in range(len(buffor) - 2, -1,-1):
